@@ -8,22 +8,26 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('todo_items', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('todo', 20);
-            $table->boolean('completed');
+            $table->string('name', 25);
+            $table->foreignId('continent_id')->references('id')->on('continents');
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('todo_items');
+        Schema::dropIfExists('countries');
     }
 };
